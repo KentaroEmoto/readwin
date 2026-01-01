@@ -125,8 +125,8 @@ def __read_win_1(filename, chdict):
             if(i not in chdict.keys()):
                 continue
             t = Trace(data=np.array(output[i])*chdict[i][1])
+            t.stats.station = chdict[str(i).lower()][0]
         t.stats.channel = str(i).lower()
-        t.stats.station = chdict[str(i).lower()][0]
         t.stats.sampling_rate = float(srates[i])
         t.stats.starttime = start
         traces.append(t)
