@@ -140,7 +140,7 @@ def read_chtable(chtbl):
                 decoded_line = line.decode('utf-8')
             except UnicodeDecodeError:
                 decoded_line = line.decode('euc-jp')
-            if('#' in decoded_line):
+            if(decoded_line.startswith('#')):
                 continue
             #el = line.split()
             el = decoded_line.split()
@@ -152,7 +152,10 @@ def read_chtable(chtbl):
                 fac = adstep/(sens*pow(10.0, amp/20.0))
             else:
                 fac = 0.0
-            f0 = 1/float(el[9])
+            if(float(el[9]) == 0):
+                f0 = 0
+            else:
+                f0 = 1/float(el[9])
             damp = float(el[10])
             stcode = el[3]
             comp = el[4]
